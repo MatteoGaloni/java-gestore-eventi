@@ -69,5 +69,31 @@ public class Event {
         return seatsNumber;
     }
 
+    public void bookSeats(int seatsNumber) throws IllegalArgumentException{
+        int availableSeats = totalSeats - bookedSeats;
+        if (this.date.isBefore(LocalDate.now())){
+            throw new IllegalArgumentException("Sorry, the event is no longer available");
+        } else if( availableSeats < seatsNumber || seatsNumber <= 0 ){
+            throw new IllegalArgumentException("Sorry. you are exceeding the available number of seats. Available seats are " + availableSeats + " or you are entering a not positive number ");
+        } else bookedSeats += seatsNumber;
+    }
 
+    public void deleteBookedSeats(int seatsNumber) throws IllegalArgumentException{
+        if (seatsNumber <= 0){
+            throw new IllegalArgumentException("Please enter a positive or greater than 0 number");
+        } else if (bookedSeats - seatsNumber < 0) {
+            throw new IllegalArgumentException("You can't delete your reservation, please enter a smaller number");
+        } else bookedSeats -= seatsNumber;
+
+    }
+
+    @Override
+    public String toString() {
+        return "Event{" +
+                "title='" + title + '\'' +
+                ", date=" + date +
+                ", totalSeats=" + totalSeats +
+                ", bookedSeats=" + bookedSeats +
+                '}';
+    }
 }
