@@ -2,7 +2,7 @@ package org.learning.java.events;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
-import java.util.Date;
+import java.time.format.DateTimeFormatter;
 
 public class Event {
     //Attributes
@@ -87,13 +87,13 @@ public class Event {
 
     }
 
+    public static String getformattedDate(LocalDate date) {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+        return date.format(formatter);
+    }
+
     @Override
     public String toString() {
-        return "Event{" +
-                "title='" + title + '\'' +
-                ", date=" + date +
-                ", totalSeats=" + totalSeats +
-                ", bookedSeats=" + bookedSeats +
-                '}';
+        return "Date= " + getformattedDate(date) + "Title= " + title;
     }
 }

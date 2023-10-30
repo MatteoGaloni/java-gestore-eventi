@@ -1,6 +1,6 @@
 package org.learning.java.events;
 
-import java.sql.SQLOutput;
+import java.math.BigDecimal;
 import java.util.Scanner;
 
 public class Main {
@@ -8,6 +8,13 @@ public class Main {
 //        Event xmasConcert = new Event("Xmas Concert", "2023-10-30",200);
         Scanner scan = new Scanner (System.in);
         boolean exit = false;
+
+        try {
+            Concert revinck = new Concert("Xmas Concert", "2023-10-30", 200, "15:06:45", new BigDecimal("12.5"));
+            System.out.println(revinck);
+        } catch(IllegalArgumentException e){
+            System.out.println(e.getMessage());
+        }
 
         while (!exit) {
             try {
@@ -30,7 +37,7 @@ public class Main {
                                 int seatsToBook = Integer.parseInt(scan.nextLine());
                                 event.bookSeats(seatsToBook);
                                 System.out.println("You've booked " + seatsToBook + " seats." +
-                                        "There are still " +
+                                        " There are still " +
                                         (event.getTotalSeats() - event.getBookedSeats()) +
                                         " seats available");
 
