@@ -87,13 +87,14 @@ public class Event {
 
     }
 
-    public static String getformattedDate(LocalDate date) {
+    public String getFormattedDate() {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
         return date.format(formatter);
     }
 
+
     @Override
     public String toString() {
-        return "Date= " + getformattedDate(date) + "Title= " + title;
+        return "Date= " + getFormattedDate() + " Title= " + title;
     }
 }

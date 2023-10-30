@@ -2,6 +2,7 @@ package org.learning.java.events;
 
 import java.math.BigDecimal;
 import java.time.DateTimeException;
+import java.time.LocalDate;
 import java.time.LocalTime;
 import java.text.DecimalFormat;
 
@@ -34,11 +35,11 @@ public class Concert extends Event{
     }
 
 
-
     private LocalTime parseAndValidateTime(String time){
         try {
+            LocalDate eventDate = getDate();
             LocalTime parsedTime = LocalTime.parse(time);
-            if (parsedTime.isBefore(LocalTime.now())) {
+            if (parsedTime.isBefore(LocalTime.now()) && eventDate.isEqual(LocalDate.now())) {
                 throw new IllegalArgumentException("You can't provide a past time");
             }
             return parsedTime;
@@ -58,6 +59,6 @@ public class Concert extends Event{
 
     @Override
     public String toString() {
-        return "Date= " + getformattedDate(getDate()) + " Time= " + getTime() + ", Price= " + getFormattedPrice() + "€";
+        return " Date= " + getFormattedDate() + " Title= " + getTitle() + " Time= " + getTime() + " Price= " + getFormattedPrice() + "€";
     }
 }

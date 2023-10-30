@@ -1,20 +1,13 @@
 package org.learning.java.events;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
-//        Event xmasConcert = new Event("Xmas Concert", "2023-10-30",200);
         Scanner scan = new Scanner (System.in);
         boolean exit = false;
-
-        try {
-            Concert revinck = new Concert("Xmas Concert", "2023-10-30", 200, "15:06:45", new BigDecimal("12.5"));
-            System.out.println(revinck);
-        } catch(IllegalArgumentException e){
-            System.out.println(e.getMessage());
-        }
 
         while (!exit) {
             try {
@@ -22,7 +15,7 @@ public class Main {
                 if (scan.nextLine().equals("y")) {
                     System.out.println("Enter event title:");
                     String title = scan.nextLine();
-                    System.out.println("Enter event date 'YY-MM-DD':");
+                    System.out.println("Enter event date 'YYYY-MM-DD':");
                     String date = scan.nextLine();
                     System.out.println("Enter seats total number:");
                     int totalSeats = Integer.parseInt(scan.nextLine());
@@ -72,6 +65,25 @@ public class Main {
             }
         }
 
+        // Create EventsProgram List including Events and Concerts
+        try {
+            Event xmasEvent = new Event("Xmas Charity Event", "2023-10-30",200);
+            Event humanRightsEvent = new Event("Human Rights Event ", "2023-11-10",400);
+            Concert JazzConcert = new Concert("Jazz Concert", "2023-10-30",400, "17:20:20", new BigDecimal("72.5"));
+            EventsProgram list = new EventsProgram("2023 - Events Program");
+            list.addEvent(xmasEvent);
+            list.addEvent(humanRightsEvent);
+            list.addEvent(JazzConcert);
+            System.out.println(list);
+            LocalDate myDate = LocalDate.of(2023,11,10);
+            System.out.println(list.findDateEvents(myDate));
+            System.out.println(list.countEvents());
+//            list.clearEvents();
+            System.out.println(list);
+
+         } catch(IllegalArgumentException e){
+            System.out.println(e.getMessage());
+        }
 
         scan.close();
     }
