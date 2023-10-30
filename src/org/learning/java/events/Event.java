@@ -16,7 +16,7 @@ public class Event {
     //Constructors
 
     public Event(String title, String date, int totalSeats){
-        this.title = title;
+        this.title = validateString(title);
         this.date = parseAndValidateDate(date);
         this.totalSeats = validateTotalSeats(totalSeats);
     }
@@ -50,6 +50,14 @@ public class Event {
     }
 
     //Custom Methods//
+
+    private String validateString(String title){
+        if(title != null && !title.isBlank()){
+            return title;
+        } else{
+           throw new IllegalArgumentException("Please enter a valid string");
+        }
+    }
     private LocalDate parseAndValidateDate(String date){
         try {
             LocalDate parsedDate = LocalDate.parse(date);

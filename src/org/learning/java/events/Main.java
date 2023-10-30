@@ -7,6 +7,10 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
         Scanner scan = new Scanner (System.in);
+        Concert popConcert = new Concert("Pop Concert", "2023-11-10",400, "17:20:20", new BigDecimal("72.5"));
+        System.out.println(popConcert);
+
+
         boolean exit = false;
 
         while (!exit) {
@@ -69,17 +73,18 @@ public class Main {
         try {
             Event xmasEvent = new Event("Xmas Charity Event", "2023-10-30",200);
             Event humanRightsEvent = new Event("Human Rights Event ", "2023-11-10",400);
-            Concert JazzConcert = new Concert("Jazz Concert", "2023-10-30",400, "17:20:20", new BigDecimal("72.5"));
+            Concert jazzConcert = new Concert("Jazz Concert", "2023-11-10",400, "17:20:20", new BigDecimal("72.5"));
             EventsProgram list = new EventsProgram("2023 - Events Program");
             list.addEvent(xmasEvent);
             list.addEvent(humanRightsEvent);
-            list.addEvent(JazzConcert);
+            list.addEvent(jazzConcert);
             System.out.println(list);
             LocalDate myDate = LocalDate.of(2023,11,10);
             System.out.println(list.findDateEvents(myDate));
             System.out.println(list.countEvents());
-//            list.clearEvents();
-            System.out.println(list);
+            list.clearEvents();
+            if (list.countEvents() <= 0)
+                System.out.println("No results");
 
          } catch(IllegalArgumentException e){
             System.out.println(e.getMessage());
